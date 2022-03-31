@@ -1,5 +1,7 @@
 package numbers;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,7 +22,7 @@ public class NewNumbersMain {
      * Call this method and print the return value in main.
      */
     public static void main(String[] args) {
-        /*int[] array = generateArray(true);
+        int[] array = generateArray(true);
 
         System.out.println(array.length);
 
@@ -41,7 +43,7 @@ public class NewNumbersMain {
         System.out.println(twoDimensionalArray.length);
         System.out.println(twoDimensionalArray[0].length);
 
-        System.out.println(twoDimensionalArray);*/
+        System.out.println(twoDimensionalArray);
 
         ArrayList<Integer> list = generateList(true, 10);
 
@@ -54,11 +56,13 @@ public class NewNumbersMain {
         separateEvenAndOdds(list);
     }
 
-    public static int[] generateArray() {
+    public static int[] generateArray()
+    {
         return generateArray(false);
     }
 
-    public static int[] generateArray(boolean random) {
+    public static int[] generateArray(boolean random)
+    {
         int[] array = {1, 2, 3, 4, 5};
         if (random) {
             for (int i = 0; i < array.length; i++) {
@@ -112,7 +116,7 @@ public class NewNumbersMain {
      *   then return with an array with the numbers from 1 to value of length parameter.
      * Hint: Use ArrayList.
      */
-    public static ArrayList<Integer> generateList(boolean random, int length) {
+    public static @NotNull ArrayList<Integer> generateList(boolean random, int length) {
         ArrayList<Integer> result = new ArrayList<>();
         /*result.size();
         result.add(5);
@@ -137,7 +141,7 @@ public class NewNumbersMain {
      * For example: [1, 2, 3, 4, 5]
      * Extra: Create similar method for 1- and 2-dimensional arrays.
      */
-    public static void print(ArrayList<Integer> list) {
+    public static void print(@NotNull ArrayList<Integer> list) {
         System.out.print("[");
         for (int i = 0; i < list.size(); i++) {
             System.out.print(list.get(i));
@@ -154,7 +158,7 @@ public class NewNumbersMain {
      * Call this method in main and print a message with the length of subset list or
      * the static "There are no even number in the list" message.
      */
-    public static ArrayList<Integer> selectEvenNumbers(ArrayList<Integer> list) {
+    public static @NotNull ArrayList<Integer> selectEvenNumbers(@NotNull ArrayList<Integer> list) {
         ArrayList<Integer> result = new ArrayList<>();
         for (int number : list) {
             if (number % 2 == 0) {
@@ -171,7 +175,7 @@ public class NewNumbersMain {
      * Extra: Create same method for 1- and 2-dimensional arrays.
      * Extra: Create same method for lists and arrays with double values.
      */
-    public static ArrayList<Integer> intersection(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+    public static @NotNull ArrayList<Integer> intersection(ArrayList<Integer> list1, @NotNull ArrayList<Integer> list2) {
         ArrayList<Integer> result = new ArrayList<>();
         for (int number : list2) {
             if (list1.contains(number)) {
@@ -193,7 +197,7 @@ public class NewNumbersMain {
      *     - length of original list
      * Hint: This method should have no return value, because you should print the values.
      */
-    public static void separateEvenAndOdds(ArrayList<Integer> list) {
+    public static void separateEvenAndOdds(@NotNull ArrayList<Integer> list) {
         ArrayList<Integer> evenNumbers = new ArrayList<>();
         ArrayList<Integer> oddNumbers = new ArrayList<>();
         for (int number : list) {
@@ -214,26 +218,57 @@ public class NewNumbersMain {
      * Task 9: Create a numberOfOdds(array) method to count how many odd value is in a list.
      * Extra: Create same method for 1- and 2-dimensional arrays.
      */
-
+    public static int numberOfOdds(@NotNull ArrayList<Integer> array)
+    {
+        ArrayList<Integer> oddNumbers = new ArrayList<>();
+        for (int number : array) {
+            if (number % 2 == 0)
+            {
+                //semmi
+            }
+            else {
+                oddNumbers.add(number);
+            }
+        }
+        return oddNumbers.size();
+    }
     /**
      * Task 10: Create a contains(array, value) method to decide the value is in a list or not.
      * Extra: Create same method for 1- and 2-dimensional arrays.
      * Extra: Create same method for lists and arrays with double values.
      */
-
+    public static boolean contains(@NotNull ArrayList<Integer> array, int value)
+    {
+        for (int number : array)
+        {
+            if(number==value) return true;
+        }
+        return false;
+    }
     /**
      * Task 11: Create a sum(array) method to get the sum of values in a list.
      * Extra: Create same method for 1- and 2-dimensional arrays.
      * Extra: Create same method for lists and arrays with double values.
      */
-
+    public static int sum(@NotNull ArrayList<Integer> array)
+    {
+        int sum=0;
+        for (int number : array)
+        {
+            sum+=number;
+        }
+        return sum;
+    }
     /**
      * Task 12: Create a indexOf(array, value) method to return the index of value in a list.
      * If the list does not contain the value, then return with -1.
      * Extra: Create same method for 1- and 2-dimensional arrays.
      * Extra: Create same method for lists and arrays with double values.
      */
-
+    public static int indexOf(@NotNull ArrayList<Integer> array, int value)
+    {
+        return array.indexOf(value);
+    }
     /**
      * Task 13: Create a union method, what get 2 lists as parameters.
      * The method has to return with a list, what contains all elements of list parameters,
@@ -241,4 +276,17 @@ public class NewNumbersMain {
      * Extra: Create same method for 1- and 2-dimensional arrays.
      * Extra: Create same method for lists and arrays with double values.
      */
+    public static @NotNull ArrayList<Integer> union(@NotNull ArrayList<Integer> array0, ArrayList<Integer> array1)
+    {
+        ArrayList<Integer> All = new ArrayList<>();
+        for (int number : array0)
+        {
+            All.add(number);
+        }
+        for (int number : array1)
+        {
+            All.add(number);
+        }
+        return All;
+    }
 }

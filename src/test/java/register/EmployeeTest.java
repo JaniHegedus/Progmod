@@ -53,7 +53,7 @@ public class EmployeeTest {
         employee.setAddress(address);
         assertEquals(address, employee.getAddress());
     }
-    /*
+
     @Test
     public void testAgeIn() {
         int expectedAge = 34;
@@ -84,5 +84,5 @@ public class EmployeeTest {
         employee.setSalary(salary);
         assertEquals(salary, employee.getSalary());
     }
-    */
+
 }

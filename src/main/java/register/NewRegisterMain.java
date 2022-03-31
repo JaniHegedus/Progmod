@@ -1,5 +1,7 @@
 package register;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -88,6 +90,13 @@ public class NewRegisterMain {
      * Hint: Do not forget to add new line characters.
      * Hint: Create new method for repeating code snippets.
      */
+
+    /**
+     * Task 4: Create a readUsersFromFile method to read user's data from the file.
+     * The method should return with the list of users.
+     * Hint: Use BufferedReader or FileInputStream to read from a file.
+     * Hint: Take care about the header row.
+     */
     public static void writeUsersIntoFile(ArrayList<User> users, String filepath) {
         try {
             FileOutputStream writer = new FileOutputStream(filepath);
@@ -111,14 +120,13 @@ public class NewRegisterMain {
             e.printStackTrace();
         }
     }
-
     public static void writeUsersIntoFileWithBufferedWriter(ArrayList<User> users, String filepath) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
             writer.write("Name;BirthYear;Address\r\n");
             for (int i = 0; i < users.size(); i++) {
                 writer.write(users.get(i).getName() + SEMICOLON + users.get(i).getBirthYear() +
-                                SEMICOLON + users.get(i).getAddress() + "\r\n");
+                        SEMICOLON + users.get(i).getAddress() + "\r\n");
             }
             writer.close();
         } catch (Exception e) {
@@ -126,12 +134,6 @@ public class NewRegisterMain {
         }
     }
 
-    /**
-     * Task 4: Create a readUsersFromFile method to read user's data from the file.
-     * The method should return with the list of users.
-     * Hint: Use BufferedReader or FileInputStream to read from a file.
-     * Hint: Take care about the header row.
-     */
     public static ArrayList<User> readUsersFromFile(String filepath) {
         ArrayList<User> users = new ArrayList<>();
         try {
@@ -150,8 +152,6 @@ public class NewRegisterMain {
         }
         return users;
     }
-
-
     public static ArrayList<User> readUsersFromFileWithFileInputStream(String filepath) {
         ArrayList<User> users = new ArrayList<>();
         try {
@@ -166,52 +166,304 @@ public class NewRegisterMain {
         }
         return users;
     }
-
-    private static void readHeader(FileInputStream inputStream) throws IOException {
-        char character = ' ';
-        while (character != '\n' && inputStream.available() > 0) {
-            character = (char) inputStream.read();
-        }
-    }
-
     private static void readUser(FileInputStream inputStream, ArrayList<User> users) throws IOException {
         String name = readData(inputStream);
         String birthYear = readData(inputStream);
         String address = readData(inputStream);
         addUser(name, birthYear, address, users);
     }
-
     private static void addUser(String name, String birthYear, String address, ArrayList<User> users) {
         if (!name.isEmpty() && !birthYear.isEmpty() && !address.isEmpty()) {
             users.add(new User(name, Integer.parseInt(birthYear), address));
         }
     }
 
-    private static String readData(FileInputStream inputStream) throws IOException {
-        String data = "";
-        char character = ' ';
-        while (!isSeparator(character) && inputStream.available() > 0) {
-            character = (char) inputStream.read();
-            if (!isSeparator(character) && character != '\r') {
-                data += character;
-            }
-        }
-        return data;
-    }
-
-    private static boolean isSeparator(char character) {
-        return character == '\n' || character == SEMICOLON.charAt(0);
-    }
 
     /**
      * Task 5: Create similar reader and writer methods to read and write Song objects.
      */
+    public static void writeSongsIntoFile(ArrayList<Song> songs, String filepath){
+        try
+        {
+            FileOutputStream writer = new FileOutputStream(filepath);
+            writer.write("Band;Title;Length in minutes\r\n".getBytes(StandardCharsets.UTF_8));
+            String row = "";
+            for (Song song : songs)
+            {
+                row = song.getBand() + SEMICOLON + song.getTitle() + SEMICOLON +
+                       song.getLengthInMinutes() + "\r\n";
+                writer.write(row.getBytes(StandardCharsets.UTF_8));
+            }
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public static void writeSongsIntoFileWithBufferedWriter(ArrayList<Song> songs, String filepath) {
+        try
+        {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
+            writer.write("Band;Title;LengthInMinutes\r\n");
+            for (int i = 0; i < songs.size(); i++)
+            {
+                writer.write(songs.get(i).getBand() + SEMICOLON + songs.get(i).getTitle() +
+                        SEMICOLON + songs.get(i).getLengthInMinutes() + "\r\n");
+            }
+            writer.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Song> readSongsFromFile(String filepath){
+        ArrayList<Song> songs = new ArrayList<>();
+        try
+        {
+            BufferedReader reader = new BufferedReader(new FileReader(filepath));
+            reader.readLine(); //Read the header row
+            String row;
+            String[] data;
+            while (reader.ready()) {
+                row = reader.readLine();
+                data = row.split(SEMICOLON);
+                songs.add(new Song(data[0], data[1], Double.parseDouble(data[2])));
+            }
+            reader.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return songs;
+    }
+    public static ArrayList<Song> readSongsFromFileWithFileInputStream(String filepath) {
+        ArrayList<Song> songs = new ArrayList<>();
+        try {
+            FileInputStream reader = new FileInputStream(filepath);
+            readHeader(reader);
+            while (reader.available() > 0) {
+                readSong(reader, songs);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return songs;
+    }
+    private static void readSong(FileInputStream inputStream, ArrayList<Song> songs) throws IOException{
+        String band = readData(inputStream);
+        String Title = readData(inputStream);
+        String LengthInMinutes = readData(inputStream);
+        addSong(band,Title,LengthInMinutes,songs);
+    }
+    private static void addSong(@NotNull String band, String Title, String LengthInMinutes, ArrayList<Song> songs){
+        if (!band.isEmpty() && !Title.isEmpty() && !LengthInMinutes.isEmpty())
+        {
+            songs.add(new Song(band, Title, Double.parseDouble(LengthInMinutes)));
+        }
+    }
 
     /**
      * Task 6: Create similar reader and writer methods to read and write Note objects.
      */
+    public static void writeNotesIntoFile(ArrayList<Note> notes, String filepath){
+            try
+            {
+                FileOutputStream writer = new FileOutputStream(filepath);
+                writer.write("Name;Topic;Text\r\n".getBytes(StandardCharsets.UTF_8));
+                String row = "";
+                for (Note note : notes)
+                {
+                    row = note.getName() + SEMICOLON + note.getTopic() + SEMICOLON +
+                            note.getText() + "\r\n";
+                    writer.write(row.getBytes(StandardCharsets.UTF_8));
+                }
+                writer.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    public static void writeNotesIntoFileWithBufferedWriter(ArrayList<Note> notes, String filepath) {
+            try
+            {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
+                writer.write("Name;Topic;Text\r\n");
+                for (int i = 0; i < notes.size(); i++)
+                {
+                    writer.write(notes.get(i).getName() + SEMICOLON + notes.get(i).getTopic() +
+                            SEMICOLON + notes.get(i).getText() + "\r\n");
+                }
+                writer.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+    public static ArrayList<Note> readNotesFromFile(String filepath){
+            ArrayList<Note> notes = new ArrayList<>();
+            try
+            {
+                BufferedReader reader = new BufferedReader(new FileReader(filepath));
+                reader.readLine(); //Read the header row
+                String row;
+                String[] data;
+                while (reader.ready()) {
+                    row = reader.readLine();
+                    data = row.split(SEMICOLON);
+                    notes.add(new Note(data[0], data[1], data[2]));
+                }
+                reader.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return notes;
+        }
+    public static ArrayList<Note> readNotesFromFileWithFileInputStream(String filepath) {
+            ArrayList<Note> notes = new ArrayList<>();
+            try {
+                FileInputStream reader = new FileInputStream(filepath);
+                readHeader(reader);
+                while (reader.available() > 0) {
+                    readNote(reader, notes);
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return notes;
+        }
+    private static void readNote(FileInputStream inputStream, ArrayList<Note> notes) throws IOException{
+            String name = readData(inputStream);
+            String topic = readData(inputStream);
+            String text = readData(inputStream);
+            addNote(name,topic,text,notes);
+        }
+    private static void addNote(@NotNull String name, String topic, String text, ArrayList<Note> notes){
+            if (!name.isEmpty() && !topic.isEmpty() && !text.isEmpty())
+            {
+                notes.add(new Note(name, topic, text));
+            }
+        }
 
     /**
      * Task 7: Create similar reader and writer methods to read and write Book objects.
      */
+    public static void writeBooksIntoFile(ArrayList<Book> books, String filepath){
+            try
+            {
+                FileOutputStream writer = new FileOutputStream(filepath);
+                writer.write("Author;Title;Isbn\r\n".getBytes(StandardCharsets.UTF_8));
+                String row = "";
+                for (Book book : books)
+                {
+                    row = book.getAuthor() + SEMICOLON + book.getTitle() + SEMICOLON +
+                            book.getIsbn() + "\r\n";
+                    writer.write(row.getBytes(StandardCharsets.UTF_8));
+                }
+                writer.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+        public static void writeBooksIntoFileWithBufferedWriter(ArrayList<Book> books, String filepath) {
+            try
+            {
+                BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
+                writer.write("Author;Title;Isbn\r\n");
+                for (int i = 0; i < books.size(); i++)
+                {
+                    writer.write(books.get(i).getAuthor() + SEMICOLON + books.get(i).getTitle() +
+                            SEMICOLON + books.get(i).getIsbn() + "\r\n");
+                }
+                writer.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+
+        public static ArrayList<Book> readBooksFromFile(String filepath){
+            ArrayList<Book> books = new ArrayList<>();
+            try
+            {
+                BufferedReader reader = new BufferedReader(new FileReader(filepath));
+                reader.readLine(); //Read the header row
+                String row;
+                String[] data;
+                while (reader.ready()) {
+                    row = reader.readLine();
+                    data = row.split(SEMICOLON);
+                    books.add(new Book(data[0], data[1], data[2]));
+                }
+                reader.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return books;
+        }
+        public static ArrayList<Book> readBooksFromFileWithFileInputStream(String filepath) {
+            ArrayList<Book> books = new ArrayList<>();
+            try {
+                FileInputStream reader = new FileInputStream(filepath);
+                readHeader(reader);
+                while (reader.available() > 0) {
+                    readBook(reader, books);
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return books;
+        }
+        private static void readBook(FileInputStream inputStream, ArrayList<Book> books) throws IOException{
+            String author = readData(inputStream);
+            String title = readData(inputStream);
+            String isbn = readData(inputStream);
+            addBook(author,title,isbn,books);
+        }
+        private static void addBook(@NotNull String author, String title, String isbn, ArrayList<Book> books){
+            if (!author.isEmpty() && !title.isEmpty() && !isbn.isEmpty())
+            {
+                books.add(new Book(author, title, isbn));
+            }
+        }
+
+
+    private static void readHeader(FileInputStream inputStream) throws IOException {
+            char character = ' ';
+            while (character != '\n' && inputStream.available() > 0) {
+                character = (char) inputStream.read();
+            }
+        }
+    private static String readData(FileInputStream inputStream) throws IOException {
+            String data = "";
+            char character = ' ';
+            while (!isSeparator(character) && inputStream.available() > 0) {
+                character = (char) inputStream.read();
+                if (!isSeparator(character) && character != '\r') {
+                    data += character;
+                }
+            }
+            return data;
+        }
+    private static boolean isSeparator(char character) {
+            return character == '\n' || character == SEMICOLON.charAt(0);
+        }
+
+
 }

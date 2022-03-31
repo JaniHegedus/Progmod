@@ -10,57 +10,58 @@ public class User {
     {
         this("John Doe", 1985, "Baker Street", EyeColor.BROWN);
     }
-
     public User(String name, int birthYear, String address) {
         this.name = name;
         this.birthYear = birthYear;
         this.address = address;
         this.eyecolor = EyeColor.BROWN;
     }
-    public User(String name, int birthYear, String address, EyeColor eyecolor) {
+    public User(String name, int birthYear, String address, EyeColor eyecolor)
+    {
         this.name = name;
         this.birthYear = birthYear;
         this.address = address;
         this.eyecolor = eyecolor;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
-
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
-
-    public int getBirthYear() {
+    public int getBirthYear()
+    {
         return birthYear;
     }
-
-    public void setBirthYear(int birthYear) {
+    public void setBirthYear(int birthYear)
+    {
         this.birthYear = birthYear;
     }
-
-    public String getAddress() {
+    public String getAddress()
+    {
         return address;
     }
-
-    public void setAddress(String address) {
+    public void setAddress(String address)
+    {
         this.address = address;
     }
-
-    public int ageIn(int year) {
+    public int ageIn(int year)
+    {
         if (year < birthYear) {
             return 0;
         }
         return year - birthYear;
     }
-
-    public EyeColor getEyeColor() {
+    public EyeColor getEyeColor()
+    {
         return eyecolor;
     }
-
     @Override
-    public String toString() {
+    public String toString()
+    {
         return name;
     }
 }

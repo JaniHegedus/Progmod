@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class NoteTest {
     //TODO Before doing a task remove "/*" and "*/" in its test class (Shortcut: Ctrl + Shift + /).
 
-    /*
+
     Note note = new Note();
 
     @Test
@@ -38,5 +38,5 @@ public class NoteTest {
         note.setTopic(topic);
         note.setText(text);
         assertEquals(name + " (" + topic + "): " + text, note.getNoteText());
-    }*/
+    }
 }

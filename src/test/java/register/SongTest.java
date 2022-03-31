@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class SongTest {
     //TODO Before doing a task remove "/*" and "*/" in its test class (Shortcut: Ctrl + Shift + /).
 
-/*
+
     Song song = new Song();
 
     @Test
@@ -29,5 +29,5 @@ public class SongTest {
         double lengthInMinutes = 3.45;
         song.setLengthInMinutes(lengthInMinutes);
         assertEquals(lengthInMinutes, song.getLengthInMinutes(), 0.001);
-    }*/
+    }
 }

@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class FruitTest {
     //TODO Before doing a task remove "/*" and "*/" in its test class (Shortcut: Ctrl + Shift + /).
 
-    /*
+
     @Test
     public void testFruitSetName() {
         String name = "grape";
@@ -117,5 +117,5 @@ public class FruitTest {
         assertEquals(pieces, apple.getPieces());
         assertEquals(Color.RED, apple.getColor());
     }
-    */
+
 }

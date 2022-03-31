@@ -28,4 +28,5 @@ public class Goods
     public void setPrice(int price) {
         this.price = price;
     }
+
 }

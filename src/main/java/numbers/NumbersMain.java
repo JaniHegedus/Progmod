@@ -1,5 +1,8 @@
 package numbers;
 
+import static java.lang.Math.log;
+import static java.lang.Math.pow;
+
 public class NumbersMain {
     /**
      * Task 0: Update the project:
@@ -116,7 +119,28 @@ public class NumbersMain {
             return (byte) number;
         }
     }
-
+    public static int getFirstDecimal(double number)
+    {
+        int firstDigit;
+        if (number>1)
+        {
+            double removable = (double)(int)number;
+            number-=removable;
+            while (number < 1 && !(number<0.1))
+            {
+                number *= 10;
+            }
+        }
+        else if (number<1&&number!=0)
+        {
+            while (number < 1 && !(number<0.1))
+            {
+                number *= 10;
+            }
+        }
+        else number=0;
+        return (int) number;
+    }
     /**
      * Task 6: Create a getFirstDecimal method to get the first decimal of a real number.
      */

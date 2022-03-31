@@ -45,7 +45,7 @@ public class NumbersMainTest extends TestCase {
     public void testConvertIntToByte5() {
         assertEquals(-1, NumbersMain.convertIntToByte(128));
     }
-/*
+
     public void testGetFirstDecimal1() {
         assertEquals(0, NumbersMain.getFirstDecimal(0.0));
     }
@@ -60,5 +60,5 @@ public class NumbersMainTest extends TestCase {
 
     public void testGetFirstDecimal4() {
         assertEquals(1, NumbersMain.getFirstDecimal(3.14));
-    }*/
+    }
 }

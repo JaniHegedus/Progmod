@@ -67,7 +67,7 @@ public class NewRegisterMainTest {
         }
     }
 
-    /** Task 5
+     //Task 5
     @Test
     public void testWriteSongsIntoFile() throws IOException {
         String filepath = RESOURCE_PATH + WRITE_PREFIX + SONGS + FILE_EXTENSION;
@@ -79,7 +79,7 @@ public class NewRegisterMainTest {
         List<String> actual = Files.readAllLines(Path.of(filepath));
 
         assertEquals(expected.size(), actual.size() - 1);
-        assertEquals(actual.get(0), SONG_HEADER);
+        assertEquals (SONG_HEADER, actual.get(0));
 
         for (Song son: expected) {
             assertEquals(actual.get(expected.indexOf(son) + 1),
@@ -130,9 +130,9 @@ public class NewRegisterMainTest {
             assertEquals(expected.get(actual.indexOf(song) + 1),
                     song.getBand() + ";" + song.getTitle() + ";" + song.getLengthInMinutes());
         }
-    }*/
+    }
 
-    /** Task 6
+     //Task 6
     @Test
     public void testWriteNotesIntoFile() throws IOException {
         String filepath = RESOURCE_PATH + WRITE_PREFIX + NOTES + FILE_EXTENSION;
@@ -197,9 +197,9 @@ public class NewRegisterMainTest {
                     note.getName() + ";" + note.getTopic() + ";" + note.getText());
         }
     }
-    */
 
-    /** Task 7
+
+    //Task 7
     @Test
     public void testWriteBooksIntoFile() throws IOException {
         String filepath = RESOURCE_PATH + WRITE_PREFIX + BOOKS + FILE_EXTENSION;
@@ -269,7 +269,7 @@ public class NewRegisterMainTest {
                     book.getAuthor() + ";" + book.getTitle() + ";" + book.getIsbn());
         }
     }
-    */
+
 
     private static ArrayList<User> generateTestUsersList() {
         ArrayList<User> list = new ArrayList<>();

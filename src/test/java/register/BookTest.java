@@ -8,7 +8,7 @@ import static org.junit.Assert.assertNull;
 public class BookTest {
     //TODO Before doing a task remove "/*" and "*/" in its test class (Shortcut: Ctrl + Shift + /).
 
-/*
+
     @Test
     public void testConstructorNulls() {
         Book book = new Book(null, null);
@@ -75,5 +75,5 @@ public class BookTest {
         Book book = new Book(author, title);
         book.register(isbn);
         assertEquals(isbn, book.getIsbn());
-    }*/
+    }
 }

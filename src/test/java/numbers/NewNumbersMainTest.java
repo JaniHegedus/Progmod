@@ -197,7 +197,7 @@ public class NewNumbersMainTest {
 
         assertEquals(50, NewNumbersMain.intersection(list1, list1).size());
     }
-/*
+
     @Test
     public void testNumberOfOddsEmptyList() {
         assertEquals(0, NewNumbersMain.numberOfOdds(new ArrayList<>()));
@@ -337,5 +337,5 @@ public class NewNumbersMainTest {
         }
 
         assertEquals(50, NewNumbersMain.union(list1, list1).size());
-    }*/
+    }
 }

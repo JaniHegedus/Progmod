@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class RegisterMain {
+public class RegisterMain
+{
     /**
      * Task 0: Update the project:
      *          - From menu: Git / "Update Project...", OR
@@ -13,8 +14,6 @@ public class RegisterMain {
      *          - Keyboard shortcut: Ctrl+T
      * In "Update the project" popup click on Ok button.
      */
-
-    // Operator Precedence: https://docs.oracle.com/javase/tutorial/java/nutsandbolts/operators.html
     public static void main(String[] args) {
         int i = 5;
         System.out.println(i);

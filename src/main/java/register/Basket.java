@@ -2,7 +2,8 @@ package register;
 
 import java.util.ArrayList;
 
-public class Basket extends Goods{
+public class Basket extends Goods
+{
     protected ArrayList<Goods> goodsList =new ArrayList<>();
     public String createReceipt()
     {
@@ -11,15 +12,15 @@ public class Basket extends Goods{
         for (int i = 0; i < goodsList.size(); i++)
         {
             result+=goodsList.get(i).getName()+" "+goodsList.get(i).getPrice();
-            builder.append(goodsList.get(i).getName()).append(goodsList.get(i).getPrice());
-            if (i<goodsList.size()-1)
+            builder.append(goodsList.get(i).getName()).append(" ").append(goodsList.get(i).getPrice());
+            if (i<goodsList.size())
             {
                 result+="\r\n";
                 builder.append("\r\n");
             }
         }
-        return result;
-        //return builder.toString();
+        //return result;
+        return builder.toString();
     }
     public int getTotalPrice() {
         int result=0;
