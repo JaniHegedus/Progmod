@@ -4,15 +4,24 @@ public class User {
     private String name;
     private int birthYear;
     private String address;
+    private final EyeColor eyecolor;
 
-    public User() {
-        this("John Doe", 1985, "Baker Street");
+    public User()
+    {
+        this("John Doe", 1985, "Baker Street", EyeColor.BROWN);
     }
 
     public User(String name, int birthYear, String address) {
         this.name = name;
         this.birthYear = birthYear;
         this.address = address;
+        this.eyecolor = EyeColor.BROWN;
+    }
+    public User(String name, int birthYear, String address, EyeColor eyecolor) {
+        this.name = name;
+        this.birthYear = birthYear;
+        this.address = address;
+        this.eyecolor = eyecolor;
     }
 
     public String getName() {
@@ -44,6 +53,10 @@ public class User {
             return 0;
         }
         return year - birthYear;
+    }
+
+    public EyeColor getEyeColor() {
+        return eyecolor;
     }
 
     @Override

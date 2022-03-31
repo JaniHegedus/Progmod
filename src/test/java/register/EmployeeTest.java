@@ -13,7 +13,6 @@ public class EmployeeTest {
     private static final int birthYear = 2000;
     private static final int salary = 400_000;
 
-    /*
     @Test
     public void testConstructor() {
         Employee employee = new Employee(name, birthYear, address, EyeColor.BLUE, position, salary);
@@ -25,7 +24,6 @@ public class EmployeeTest {
         assertEquals(position, employee.getPosition());
         assertEquals(salary, employee.getSalary());
     }
-
     @Test
     public void testSetName() {
         String name = "John Doe";
@@ -55,7 +53,7 @@ public class EmployeeTest {
         employee.setAddress(address);
         assertEquals(address, employee.getAddress());
     }
-
+    /*
     @Test
     public void testAgeIn() {
         int expectedAge = 34;

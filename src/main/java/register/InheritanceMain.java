@@ -20,7 +20,24 @@ public class InheritanceMain {
      * Task 2: Add getter method to eye color attribute in User class. Also create a new constructor,
      * where you can define all attribute of a user object.
      */
+    public static void main(String[] args) {
+        Employee employee = new Employee("Chris John",2010,"Jókai 13",EyeColor.RED,"Developer",400_000);
+        User user = new User();
+        User userEmployee = new Employee();
+        employee.setName("John Doe");
+        userEmployee.setName("Kate Doe");
+        userEmployee.setAddress("Baker Street");
+        userEmployee.setBirthYear(1981);
+        System.out.println(employee.getEyeColor());
+        System.out.println(userEmployee.getEyeColor());
 
+        Goods goods = new Goods();
+        goods.setPrice(1200);
+        goods.setName("Anyád");
+        Goods goods1 = new Goods("Alma",100);
+        Basket basket = new Basket();
+
+    }
     /**
      * Task 3: Create an Employee class. Employees are users, who has a position and get salary.
      * Hint: To derive a class use this syntax: public class {derived class name} extends {base class name}
